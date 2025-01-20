@@ -1,6 +1,19 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Navbar() {
+    
+    const navigate = useNavigate();
+
+    const { handleLogout } = useContext(AuthContext)
+
+    function logout() {
+
+        handleLogout()
+        alert('O Usuário foi desconectado com sucesso!')
+        navigate('/')
+    }    
     return (
         <>
             <div className='w-full flex justify-center py-4
@@ -17,11 +30,11 @@ function Navbar() {
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
-                        Temas
+                        <Link to='/temas'>Temas</Link>
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
-                        Cadastrar tema
+                        <Link to='/cadastrartema'>Cadastrar tema</Link>
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
@@ -29,7 +42,7 @@ function Navbar() {
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
-                        Sair
+                        <Link to='' onClick={logout}>Sair</Link>
                         </button>
                     </div>
                 </div>
