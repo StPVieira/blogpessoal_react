@@ -1,3 +1,6 @@
+import ListaPostagens from "../../components/postagens/listapostagens/ListaPostagens";
+import ModalPostagem from "../../components/postagens/modalpostagem/ModalPostagem";
+
 function Home() {
     const texto = "Inovação Computação Programação Inteligência Artificial Cloud Computing Sustentabilidade Ecologia Reciclagem Cães Gatos Fauna Aventura Estratégia Jogos Animação Filmes Séries Cinema Streaming Efeitos especiais Ação Comédia Suspense Mistério Ficção científica Roteiro Atuação Cinematografia Direção Efeitos visuais Blockbuster Algoritmo Big Data Automação Cybersecurity Blockchain Influenciador Conteúdo Compartilhar Interação Hashtags Feed Story Like Seguidores Postagem Comunidade Reciclagem Floresta Biodiversidade Desmatamento Poluição Energia renovável Clima Aquecimento global Emissões Natureza Extinção Animais Selvagens Reptéis Aquáticos Mamíferos Endêmicos Protetores de animais Fauna Ilustração Personagens Mangá Desenhista Pixel art Estilo de arte Design Criatividade Quadrinhos Cartoons Animação Computadores Robôs Gadgets Tecnologia 5G Realidade Virtual Inteligência artificial";
 
@@ -25,9 +28,7 @@ function Home() {
                         </p>
 
                         <div className="flex justify-around gap-4">
-                            <button className="rounded bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-3 px-6 shadow-lg transition-all duration-300 transform hover:scale-105">
-                                Nova Postagem
-                            </button>
+                            <ModalPostagem />
                         </div>
                     </div>
 
@@ -40,6 +41,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <ListaPostagens />
         </>
     );
 }

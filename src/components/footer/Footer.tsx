@@ -1,23 +1,27 @@
 import { FacebookLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useContext, ReactNode } from 'react';
 
 function Footer() {
-    const data = new Date().getFullYear();
+    let data = new Date().getFullYear()
 
-    return (
-        <>
+    const { usuario } = useContext(AuthContext)
+
+    let component: ReactNode
+
+    if (usuario.token !== "") {
+
+        component = (
+
             <footer className="bg-blue-950 text-white">
                 <div className="container flex flex-col items-center py-6 gap-4">
-                    {/* Texto principal */}
                     <p className="text-xl font-bold text-center drop-shadow-md">
                         Blog Pessoal Generation | Copyright: {data}
                     </p>
 
-                    {/* Subtítulo */}
                     <p className="text-lg font-light text-center">
                         Acesse nossas redes sociais
                     </p>
-
-                    {/* Ícones das redes sociais */}
                     <div className="flex gap-4">
                         <a
                             href="https://www.linkedin.com"
@@ -46,6 +50,13 @@ function Footer() {
                     </div>
                 </div>
             </footer>
+
+        )
+    }
+
+    return (
+        <>
+            { component }
         </>
     );
 }

@@ -1,21 +1,27 @@
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Navbar() {
     
     const navigate = useNavigate();
 
-    const { handleLogout } = useContext(AuthContext)
+    const { usuario, handleLogout } = useContext(AuthContext)
 
     function logout() {
 
         handleLogout()
-        alert('O Usuário foi desconectado com sucesso!')
+        ToastAlerta('O Usuário foi desconectado com sucesso!', 'info')
         navigate('/')
     }    
-    return (
-        <>
+
+    let component: ReactNode
+
+    if (usuario.token !== "") {
+
+        component = (
+
             <div className='w-full flex justify-center py-4
             			   bg-cyan-600 text-white'>
             
@@ -26,7 +32,7 @@ function Navbar() {
 
                     <div className='flex gap-4'>
                         <button className="px-4 py-2 bg-indigo-950 text-white rounded shadow hover:bg-blue-600">
-                        Postagens
+                        <Link to='/postagens'>Postagens</Link>
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
@@ -38,7 +44,7 @@ function Navbar() {
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
-                        Perfil
+                        <Link to='/perfil'>Perfil</Link>
                         </button>
 
                         <button className="px-4 py-2 bg-indigo-950  text-white rounded shadow hover:bg-blue-600">
@@ -47,6 +53,14 @@ function Navbar() {
                     </div>
                 </div>
             </div>
+
+        )
+
+    }
+
+    return (
+        <>
+            { component }
         </>
     )
 }
